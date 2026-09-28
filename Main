@@ -1,0 +1,24 @@
+package Ex06;
+import java.util.ArrayList;
+import java.util.List;
+public class Main {
+    public static void main(String[] args) {
+        List<Order> orders = new ArrayList<>();
+        orders.add(new Order("ORD01", "SUCCESS", 2000000));
+        orders.add(new Order("ORD02", "SUCCESS", 5000000));
+        orders.add(new Order("ORD03", "CANCELLED", 8000000));
+        orders.add(new Order("ORD04", "SUCCESS", 3000000));
+        orders.add(new Order("ORD05", "SUCCESS", 4000000));
+        double totalRevenue = OrderAnalytics.calculateTotalRevenue(orders);
+        double averageValue = OrderAnalytics.calculateAverageValue(orders);
+        Order maxOrder = OrderAnalytics.findMaxOrder(orders);;
+        System.out.println("|       THỐNG KÊ DOANH THU E-COMMERCE STREAM API       |");
+        System.out.printf("| Tổng doanh thu      : %,.2f VNĐ%n", totalRevenue);
+        System.out.printf("| Giá trị trung bình  : %,.2f VNĐ%n", averageValue);
+        if (maxOrder != null) {
+            System.out.printf("| Đơn lớn nhất        : %s - %,.2f VNĐ%n", maxOrder.getId(), maxOrder.getTotalAmount());
+        } else {
+            System.out.println("| Không có đơn hàng SUCCESS.");
+        }
+    }
+}
