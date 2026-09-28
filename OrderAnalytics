@@ -1,0 +1,25 @@
+package Ex06;
+import java.util.Comparator;
+import java.util.List;
+
+public class OrderAnalytics {
+    public static double calculateTotalRevenue(List<Order> list) {
+        return list.stream()
+                .filter(order -> order.getStatus().equalsIgnoreCase("SUCCESS"))
+                .mapToDouble(Order::getTotalAmount)
+                .sum();
+    }
+    public static double calculateAverageValue(List<Order> list) {
+        return list.stream()
+                .filter(order -> order.getStatus().equalsIgnoreCase("SUCCESS"))
+                .mapToDouble(Order::getTotalAmount)
+                .average()
+                .orElse(0.0);
+    }
+    public static Order findMaxOrder(List<Order> list) {
+        return list.stream()
+                .filter(order -> order.getStatus().equalsIgnoreCase("SUCCESS"))
+                .max(Comparator.comparingDouble(Order::getTotalAmount))
+                .orElse(null);
+    }
+}
